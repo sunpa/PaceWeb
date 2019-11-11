@@ -1,0 +1,136 @@
+﻿@model IEnumerable<AssessmentsByBondSeries>
+@{
+    ViewData["Title"] = "AssessmentsByProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page">
+        <h2>Assessments By Projects</h2>
+
+        @using (Html.BeginForm())
+        {
+            <table>
+                <tr>
+                    <td style="padding-right:25px;"></td>
+                    <td>@Html.ActionLink("Home", "Index", "AssessmentsByProjects")</td>
+                </tr>
+            </table>
+            <br />
+
+            <fieldset>
+
+                <table class="table">
+                    <tr style="background-color:#52BFF7;color:white;">
+                        <th width="200px">
+                            @Html.DisplayName("APN")
+                        </th>
+                        <th width="180px">
+                            @Html.DisplayName("Name")
+                        </th>
+                        <th width="180px">
+                            @Html.DisplayName("Participant ID")
+                        </th>
+                        <th width="180px">
+                            @Html.DisplayName("Project")
+                        </th>
+                        <th width="120px">
+                            @Html.DisplayName("First Tax Bill Date")
+                        </th>
+                        <th width="90px">
+                            @Html.DisplayName("Assessment Amount")
+                        </th>
+                        <th width="90px">
+                            @Html.DisplayName("Outstanding Amount")
+                        </th>
+                        <th width="90px">
+                            @Html.DisplayName("Interest Rate")
+                        </th>
+                        <th width="120px">
+                            @Html.DisplayName("Maturity Date")
+                        </th>
+                        <th width="90px">
+                            @Html.DisplayName("Principal Paid")
+                        </th>
+                        <th width="90px">
+                            @Html.DisplayName("Interest Paid")
+                        </th>
+                        <th width="90px">
+                            @Html.DisplayName("Admin Fee")
+                        </th>
+                        <th width="120px">
+                            @Html.DisplayName("Interest Paid Through")
+                        </th>
+                        <th width="120px">
+                            @Html.DisplayName("Next Due Date")
+                        </th>
+                    </tr>
+
+                    @{var rowColor = "#FFFFE0";}
+                    @foreach (var item in Model)
+                    {
+
+                <tr style="background-color:@rowColor;">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ParcelNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ParticipantID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BondSeries)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.FirstDueDate)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.AssessmentAmount)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.CurrentAssessmentAmount)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.InterestRate)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.MaturityDate)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.PrincipalReceived)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.InterestReceived)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.AdministrativeFee)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.InterestPaidDate)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.NextDueDate)
+                    </td>
+                </tr>
+
+                        if (@rowColor.Equals("#FFFFE0"))
+                        {
+                            rowColor = "#EDFBFC";
+                        }
+                        else
+                        {
+                            rowColor = "#FFFFE0";
+                        }
+                    }
+                </table>
+                @Html.Hidden("ScrapeProcessedDates", ViewData["scrapeProcessedDate"])
+                @Html.Hidden("Counties", ViewData["county"])
+                @Html.Hidden("Status", ViewData["status"])
+                @Html.Hidden("AccountNo", ViewData["accountno"])
+            </fieldset>
+
+        }
+
+    </div>
+

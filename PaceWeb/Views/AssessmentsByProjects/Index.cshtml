@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "AssessmentsByProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page">
+    <h2>Assessments By Projects</h2>
+
+    @using (Html.BeginForm("AssessmentsByProjects","AssessmentsByProjects", FormMethod.Post))
+    {
+        <fieldset>
+            <table>
+                <tr>
+                    <td>
+                        <b>Projects From:</b>
+                    </td>
+                    <td>
+                        @Html.DropDownList("bondSeriesFrom")
+                    </td>
+                    <td style="width:60px">&nbsp;</td>
+                    <td>
+                        <b>Projects To:</b>
+                    </td>
+                    <td>
+                        @Html.DropDownList("bondSeriesTo")
+                    </td>
+                    <td style="width:60px">&nbsp;</td>
+
+                    <td>
+                        <input type="submit" value="Search By Projects" />
+                    </td>
+                </tr>
+            </table>
+            @Html.Hidden("ClientNo", ViewData["ClientNo"])
+        </fieldset>
+    }
+
+</div>
+
+
